@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    main.otherpage
+        aside
+        section
+            h2= subtitle
+            form(action='/deptform' method='post')
+                table
+                    tr
+                        td.col_l Name
+                        td
+                            input(type='text' name='name' placeholder='department name' required)
+                    tr
+                        td.col_l Street
+                        td
+                            input(type='text' name='street' placeholder='street name' required)
+                    tr
+                        td.col_l Number
+                        td
+                            input(type='number' name='no' placeholder='number' required)
+                    tr
+                        td.col_l Place
+                        td
+                            input(type='text' name='place' placeholder='placename')
+                    tr
+                        td.col_l Zip
+                        td
+                            input(type='text' name='zip' placeholder='zipcode' required)
+                    tr
+                        td.col_l Town
+                        td
+                            input(type='text' name='town' placeholder='town' required)
+                    tr
+                        td
+                        td
+                            input(type='submit' value='Go')
+        aside
+    include footer.pug

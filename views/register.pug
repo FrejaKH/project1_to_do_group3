@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    main.otherpage
+        aside
+        section
+            h2= subtitle
+            form(id='registerForm' action='/users/register' method='post')
+                table
+                    tr
+                        td.col_l CPR
+                        td
+                            input(type='text' name='cpr' placeholder='ddmmyyyy-ssss' minlength='11' required)
+                    tr
+                        td.col_l Email
+                        td
+                            input(type='email' name='email' placeholder='a@b.cc' required)
+                    tr
+                        td.col_l User, First Name
+                        td
+                            input(type='text' name='firstname' placeholder='firstname' required)
+                    tr
+                        td.col_l User, Middle Name
+                        td
+                            input(type='text' name='middlename' placeholder='middlename')
+                    tr
+                        td.col_l User, Last Name
+                        td
+                            input(type='text' name='lastname' placeholder='lastname' required)
+                    tr
+                        td.col_l Password
+                        td
+                            input(type='password' id='password' name='password' placeholder='password, min 16 chars' minlength='16' required)
+                    tr
+                        td.col_l Password Again
+                        td
+                            input(type='password' name='password1' placeholder='password, must match the above' minlength='16' required)
+                    tr
+                        td.col_l Department
+                        td
+                            select(name='department' required)
+                                each dept in departments
+                                    option(value=dept._id) #{dept.name}
+                    tr
+                        td
+                        td
+                            input(type='submit' value='Go')
+        aside
+    include footer.pug

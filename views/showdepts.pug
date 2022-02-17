@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    main.otherpage
+        aside
+        section
+            h2= subtitle
+            table.disp
+                tr
+                    th Name
+                    th Address
+                each dept in departments
+                    tr
+                        td #{dept.name}
+                        td #{dept.address.no} #{dept.address.street}, #{dept.address.zip} #{dept.address.town}
+        aside
+    include footer.pug
