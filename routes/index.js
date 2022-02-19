@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const TITLE = 'Employee Pattern Project';
-const con = require('../controllers/controller');
+const controller = require('../controllers/controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,15 +21,14 @@ router.get('/departments', async function(req, res, next) {
     });
 });
 /* GET show html form for departments */
-router.get('/deptform', function(req, res, next) {
-    res.render('deptformv', {
-        title: TITLE,
-        subtitle: 'Department Entry Form'
+router.get('/addtodo', function(req, res, next) {
+    res.render('addtodo', {
+        title: 'Add To Do'
     });
 });
 /* POST handle form data for departments */
-router.post('/deptform', function(req, res, next) {
-    con.postDept(req, res, next);                                   // write department into db
+router.post('/addtodo', function(req, res, next) {
+    controller.postTodo(req, res, next);                                   // write department into db
     res.redirect('/');
 });
 

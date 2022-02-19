@@ -8,14 +8,14 @@ html
     body
         header
             nav
-                h1= title
                 ul
+                    li 
+                        a(href='/admin') Admin
                     li
-                        a(href='/') Home
+                        a(href='/') To Do List
                     li
-                        a(href='/departments') Display Departments
+                        a(href='/addtodo') Add To Do
                     li
-                        a(href='/deptform') Register Departments
-                    li
-                        a(href='/users/register') Register Users
+                        a(href='/logout') Logout
+
         block content

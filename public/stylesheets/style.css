@@ -1,69 +1,111 @@
-body, html {
-    height: 100%;
-    margin: auto;
-    padding: 0;
-    width: 90%;
-}
-header nav, footer {
-    align-items: center;
-    background-color: black;
-    color: white;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    padding-left: .5em;
-    padding-right: .5em;
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ----------------- header -------------- */
-header nav h1 {
-    border: 0px solid green;
-    font-size: 2em;
+h1{
+    color: #ffffff;
 }
-header nav ul {
-    border: 0px solid yellow;
-    list-style: none;
-    text-align: right;
+
+/*---------------------------------Header-------------------------------------*/
+
+header{
+    width:100%;
+    height:80px;
+    background-color:#AE927E;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-header nav ul li {
-    display: inline;
-    font-size: 1.2em;
-    margin: 0;
-}
-header nav ul li:not(:last-child):after {
-  content: ' | ';
-  color: magenta;
-}
-header nav a {
-    color: inherit;
-    font-style: normal;
-    font-variant: small-caps;
+
+header a{
     text-decoration: none;
+    color:#ffffff;
+    font-size: 20px;
 }
-header nav ul a:hover {
+
+header a:hover{
     text-decoration: underline;
 }
 
-/* ----------------- main -------------- */
-main.frontpage {
-    border: 1px solid black;
-    height: 80%;
-    min-height: 250px;
+header ul{
+    list-style: none;
+    padding-right:4em;
+    margin: 0;
     display: flex;
+}
+
+header li{
+    padding:0 1em;
+    
+}
+
+main{
+    width:100%;
+    height:90vh;
+    display:flex;
+    justify-content:center;
     align-items: center;
-    justify-content: center;
+    background-color:#FBF2E1;
+}
+
+/*---------------------------------Front page-------------------------------------*/
+
+
+/*---------------------------------Log in-------------------------------------*/
+
+
+/*---------------------------------sign up-------------------------------------*/
+
+
+/*---------------------------------To Do List-------------------------------------*/
+
+
+/*---------------------------------Add To Do-------------------------------------*/
+
+.list_container{
+    width:750px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
     flex-direction: column;
+    background-color: #AE927E;
+    padding:20px;
 }
-main.otherpage {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
-    grid-gap: 1em;    
-    height: 80%;
-    min-height: 350px;
-    padding: 1em;
+
+#add_form{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
-#loginmsg {
-    color: #c00;
-    font-weight: 700;
+
+.form_pair input{
+    width:200px;
+    height:40px;
+    margin:1em 0;
+    border: 1px solid #000000;
 }
-/* ----------------- footer -------------- */
+
+.form_pair label{
+    margin-right:100px;
+    color:#ffffff;
+}
+
+#description{
+    height:80px;
+}
+
+.submit{
+    display:flex;
+    justify-content:center;
+}
+
+#add_btn{
+    width:150px;
+    height:50px;
+    background-color: #FBF2E1;
+    border: 1px solid #000000;
+    margin:20px 0;
+    cursor: pointer;
+}

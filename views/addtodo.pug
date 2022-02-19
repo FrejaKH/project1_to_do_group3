@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    main.main_add
+        div.list_container
+            h1=title 
+            div.form_container
+                form(id="add_form" action="/addtodo" method="POST")
+                    div.form_pair
+                        label(for="title") Title 
+                        input(id="title" type="text" name="title" placeholder="add title" required)
+                    div.form_pair
+                        label(for="title") To Do
+                        input(id="description" type="text" name="description" placeholder="add description" required)
+                    div.form_pair
+                        label(for="title") Start Date 
+                        input(id="startdate" type="date" name="startdate" placeholder="dd-mm-yyyy" required)
+                    div.form_pair
+                        label(for="title") Deadline
+                        input(id="deadline" type="date" name="deadline" placeholder="dd-mm-yyyy" required)
+                    div.form_pair
+                        label(for="title") Priority 
+                        input(id="priority" type="number" name="priority" placeholder="priority 1-5")
+                    div.submit
+                        input(id="add_btn" type="submit" value="Add To Do")

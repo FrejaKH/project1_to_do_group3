@@ -1,31 +1,27 @@
 const mongoose = require("mongoose");
-const mongoUtil = require("../models/MongoUtil");
-const Department = require("../models/Dept");
+const mongoConnect = require("../models/MongoConnection");
+const Todoschema = require("../models/todoschema");
 
 module.exports = {
-    getDepts: async function (que, sort) {
-        const db = await mongoUtil.mongoConnect();                                // connect
-        const depts = await Department.find(que, null, sort);                     // read
+    getTodo: async function (que, sort) {
+        const db = await mongoConnect.mongoConnect();                                // connect
+        const todolist = await Todoschema.find(que, null, sort);                     // read
         db.close();
-        return depts;
+        return todolist;
     },
 
-    postDept: async function (req) {
-        const db = await mongoUtil.mongoConnect();                                // connect
-        let address = {
-            street: req.body.street,
-            no: req.body.no,
-            place: req.body.place,
-            zip: req.body.zip,
-            town: req.body.town 
-        };
-        
-        let dept = new Department({                                               // create obejct in schema-format
-            name: req.body.name,
-            address: address
+    postTodo: async function (req) {
+        const db = await mongoConnect.mongoConnect();                                // connect
+        let todolist = new Todoschema({
+            title: req.body.title,
+            description: req.body.description,
+            startdate: req.body.startdate,
+            deadline: req.body.deadline,
+            priority: req.body.priority 
         });
         
-        Department.create(dept, function(error, savedDocument) {                  // write dept
+       
+        Todoschema.create(todolist, function(error, savedDocument) {                  // write dept
             if (error)
                 console.log(error);
             console.log(savedDocument);

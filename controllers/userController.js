@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const mongoUtil = require("../models/MongoUtil");
+const mongoConnect = require("../models/MongoConnection");
 const User = require("../models/User");
 
 module.exports = {
     getUser: async function (que, sort) {
-        const db = await mongoUtil.mongoConnect();                          // connect
+        const db = await mongoConnect.mongoConnect();                          // connect
         const depts = await Dept.find(que, null, sort);                     // read
         db.close();
         return books;
     },
 
     postUser: async function (req) {
-        const db = await mongoUtil.mongoConnect();                          // connect
+        const db = await mongoConnect.mongoConnect();                          // connect
         bcrypt.hash(req.body.password, 10, function(err, hash) {
             let user = new User({                                           // create obejct in schema-format
                 cpr: req.body.cpr,
