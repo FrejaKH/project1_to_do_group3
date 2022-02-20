@@ -20,15 +20,18 @@ router.get('/departments', async function(req, res, next) {
         departments
     });
 });
-/* GET show html form for departments */
+
+// GET page with "Add to do"
 router.get('/addtodo', function(req, res, next) {
     res.render('addtodo', {
         title: 'Add To Do'
     });
 });
-/* POST handle form data for departments */
+
+// POST handle form data for "Add to do" 
 router.post('/addtodo', function(req, res, next) {
-    controller.postTodo(req, res, next);                                   // write department into db
+    //function from controllers that writes to do into database
+    controller.postTodo(req, res, next);                                  
     res.redirect('/');
 });
 

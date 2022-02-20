@@ -4,6 +4,7 @@ const Todoschema = require("../models/todoschema");
 
 module.exports = {
     getTodo: async function (que, sort) {
+        // opret forbindelse til mongodb
         const db = await mongoConnect.mongoConnect();                                // connect
         const todolist = await Todoschema.find(que, null, sort);                     // read
         db.close();
@@ -21,7 +22,7 @@ module.exports = {
         });
         
        
-        Todoschema.create(todolist, function(error, savedDocument) {                  // write dept
+        Todoschema.create(todolist, function(error, savedDocument) {                  // write todo
             if (error)
                 console.log(error);
             console.log(savedDocument);
@@ -29,3 +30,4 @@ module.exports = {
         });
     }
 }
+
