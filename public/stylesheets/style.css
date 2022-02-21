@@ -1,4 +1,4 @@
-body, html {
+/* body, html {
     height: 100%;
     margin: auto;
     padding: 0;
@@ -12,10 +12,10 @@ header nav, footer {
     grid-template-columns: 1fr 2fr;
     padding-left: .5em;
     padding-right: .5em;
-}
+} */
 
 /* ----------------- header -------------- */
-header nav h1 {
+/* header nav h1 {
     border: 0px solid green;
     font-size: 2em;
 }
@@ -41,10 +41,10 @@ header nav a {
 }
 header nav ul a:hover {
     text-decoration: underline;
-}
+} */
 
 /* ----------------- main -------------- */
-main.frontpage {
+/* main.frontpage {
     border: 1px solid black;
     height: 80%;
     min-height: 250px;
@@ -65,5 +65,88 @@ main.otherpage {
 #loginmsg {
     color: #c00;
     font-weight: 700;
-}
+} */
 /* ----------------- footer -------------- */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+input {
+  border: 1px solid;
+  border-radius: 5px;
+  /* min-width: 34%; */
+}
+
+button {
+  font-size: 14px;
+  font-family: "source Sance Pro", sans-serif;
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  padding: 0.5%;
+  background-color: lightskyblue;
+  color: white;
+}
+
+/* holds the header navigation */
+.navigationBar {
+  list-style-type: none;
+  margin-top: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+/* Defines Li  */
+.navigationList {
+  float: left;
+}
+
+.navigationText {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.navigationText:hover {
+  background-color: #333;
+}
+
+.pageStructure {
+  display: block;
+  border-radius: 20px;
+  background-color: blanchedalmond;
+  min-height: 100%;
+  margin-top: 2.5;
+  margin-left: 13%;
+  margin-right: 13%;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+.exerciseDiv {
+  margin-left: 2%;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50px;
+}
+.backgroundPicture {
+  background-image: url("../images/zojuy79lo3fn3qdt7g6p.png");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 600px;
+}
+table, td {
+  margin: 2%;
+  border: 1px solid black;
+  padding: .2em;
+}
+

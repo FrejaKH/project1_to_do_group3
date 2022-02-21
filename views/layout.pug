@@ -1,21 +1,22 @@
+//- blok content needs to be placed right. it matters how many spaces you have.
 doctype html
 html
-    head
-        meta(charset='utf-8')
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        script(src='/javascripts/page.js')
-    body
-        header
-            nav
-                h1= title
-                ul
-                    li
-                        a(href='/') Home
-                    li
-                        a(href='/departments') Display Departments
-                    li
-                        a(href='/deptform') Register Departments
-                    li
-                        a(href='/users/register') Register Users
-        block content
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    ul.navigationBar
+      li.navigationList
+        a.navigationText(href='/') Welcome
+      li.navigationList
+        a.navigationText(href='/admin') Admin
+      li.navigationList
+        a.navigationText(href='/exercise') Exercise
+      li.navigationList
+        a.navigationText(href='/about') About
+      li.navigationList
+        a.navigationText(href='/country') country   
+    block content
