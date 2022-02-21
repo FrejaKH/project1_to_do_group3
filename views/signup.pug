@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    main.mainsignup
+        div.signup_container
+            h2.h2login= subtitle
+            div.container_login
+                form(action="/login" method="Post")
+                    div.form_pair_signup
+                        label.label_signup_style Firstname
+                        input(class="inputstyle" type="text" name="firstname" placeholder="Firstname")
+                    div.form_pair_signup
+                        label.label_signup_style Lastname
+                        input(class="inputstyle" type="text" name="lastname" placeholder="Lastname")
+                    div.form_pair_signup
+                        label.label_signup_style E-mail
+                        input(class="inputstyle" type="text" name="Email" placeholder="E-mail")
+                    div.form_pair_signup
+                        label.label_signup_style Phone number
+                        input(class="inputstyle" type="text" name="phonenumber" placeholder="Phone number")
+                    div.form_pair_signup
+                        label.label_signup_style Password
+                        input(class="inputstyle" type="text" name="password" placeholder="password")
+                    div.form_pair_signup
+                        label.label_signup_style Repeat password
+                        input(class="inputstyle" type="text" name="username" placeholder="repeat password")                   
+                    div.form_pair_signup
+                        a(class="inputstyle" style="color: blue" href="http://localhost:3000/users/login") Already account?
+                    div.form_pair_signup
+                        input(class="input_button_signup" type="submit" value="Signup")    
+    include footer.pug     

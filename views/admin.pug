@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    main.admin_page
+        section
+            div.admin_header
+                h2= subtitle
+            div.table-responsive    
+                table.table
+                    tr
+                        th Firstname
+                        th Lastname
+                        th E-mail
+                        th Username
+                        th Status
+                        th 
+                    tr
+                        td René
+                        td Seebach
+                        td reneseebach@gmail.com
+                        td zantex94
+                        td active
+                        td
+                            form(action="")
+                            input(type="submit")
+                    tr
+                        td René
+                        td Seebach
+                        td reneseebach@gmail.com
+                        td zantex94
+                        td active
+                        td
+                            form(action="")
+                            input(type="submit")  
+    include footer.pug

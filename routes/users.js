@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const TITLE = 'Employee Pattern Project';
+const TITLE = 'Todo';
 const con = require('../controllers/userController');
 const dep = require('../controllers/controller');
 
@@ -21,6 +21,28 @@ router.get('/register', async function(req, res, next) {
 router.post('/register', function(req, res, next) {
   con.postUser(req, res, next);                         // write user into db
   res.redirect('/');                                    // go to front page
+});
+
+/* GET signup page */
+router.get('/signup', function(req, res, next) {
+  res.render('signup', {
+        title: TITLE,
+        subtitle: 'Signup'
+    });
+});
+/* GET signup page */
+router.get('/login', function(req, res, next) {
+  res.render('login', {
+        title: TITLE,
+        subtitle: 'Login'
+    });
+});
+/* GET signup page */
+router.get('/admin', function(req, res, next) {
+  res.render('admin', {
+        title: TITLE,
+        subtitle: 'Activate/Deactivate users'
+    });
 });
 
 module.exports = router;

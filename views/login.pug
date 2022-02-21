@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    main.frontpage
+        div.login_container
+            h2.h2login= subtitle
+            div.container_login
+                form(action="/login" method="Post")
+                    div.form_pair_login
+                        label.label_login_style Username
+                        input(class="inputstyle" type="text" name="username" placeholder="Username")
+                    div.form_pair_login
+                        label.label_login_style Password
+                        input(class="inputstyle" type="text" name="password" placeholder="Password")
+                    div.form_pair_login
+                        a(class="inputstyle" style="color: blue" href="http://localhost:3000/users/signup") Need to signup?    
+                    div.form_pair_login
+                        input(type="submit" value="Login")    
+    include footer.pug     

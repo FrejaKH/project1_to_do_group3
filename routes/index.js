@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const TITLE = 'Employee Pattern Project';
+const TITLE = 'Todo';
 const controller = require('../controllers/controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {
+  res.render('welcome', {
         title: TITLE,
-        subtitle: 'Front Page'
+        subtitle: 'Welcome'
     });
 });
 
@@ -34,5 +34,6 @@ router.post('/addtodo', function(req, res, next) {
     controller.postTodo(req, res, next);                                  
     res.redirect('/');
 });
+
 
 module.exports = router;
