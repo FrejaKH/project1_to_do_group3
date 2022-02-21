@@ -11,16 +11,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* GET show departments */
-router.get('/departments', async function(req, res, next) {
-    let departments = await con.getDepts({}, {sort: {title: 1}});   // read depts from db
-    res.render('showdepts', {
-        title: TITLE,
-        subtitle: 'Display Departments',
-        departments
-    });
-});
-
 // GET page with "Add to do"
 router.get('/addtodo', function(req, res, next) {
     res.render('addtodo', {
@@ -34,5 +24,19 @@ router.post('/addtodo', function(req, res, next) {
     controller.postTodo(req, res, next);                                  
     res.redirect('/');
 });
+
+// GET page with finished to dos
+router.get('/finishedtodos', function(req, res, next){
+    res.render('finishedtodos', {
+        title: 'Finished To Dos'
+    });
+})
+
+// GET page with overwritten to dos
+router.get('/overwrittentodos', function(req, res, next){
+    res.render('overwrittentodos', {
+        title: 'Overwritten To Dos'
+    });
+})
 
 module.exports = router;

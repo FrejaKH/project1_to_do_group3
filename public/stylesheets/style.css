@@ -13,7 +13,7 @@ h1{
 header{
     width:100%;
     height:80px;
-    background-color:#AE927E;
+    background-color:#76A5AF;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -47,7 +47,7 @@ main{
     display:flex;
     justify-content:center;
     align-items: center;
-    background-color:#FBF2E1;
+    background-color:#C8DBDF;
 }
 
 /*---------------------------------Front page-------------------------------------*/
@@ -70,7 +70,7 @@ main{
     justify-content:center;
     align-items: center;
     flex-direction: column;
-    background-color: #AE927E;
+    background-color: #76A5AF;
     padding:20px;
 }
 
@@ -104,7 +104,7 @@ main{
 #add_btn{
     width:150px;
     height:50px;
-    background-color: #FBF2E1;
+    background-color: #C8DBDF;
     border: 1px solid #000000;
     margin:20px 0;
     cursor: pointer;
