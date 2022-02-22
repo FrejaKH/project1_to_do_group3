@@ -40,8 +40,9 @@ router.get('/login', function(req, res, next) {
         subtitle: 'Login'
     });
 });
-/* GET signup page */
+/* post signup page */
 router.post('/login', function(req, res, next) {
+  
 
 });
 /* GET signup page */
@@ -54,23 +55,15 @@ router.get('/admin', async function(req, res, next) {
     });
 });
 
-/* post admin page */
+/* get admin username on page */
 router.get('/admin/:username', async function(req, res, next) {
-  // console.log(req.params.username);
   usercontroller.updateUser(req, res, next, 'active', req.params.username);
   res.redirect('/users/admin'); 
 });
-/* post admin page */
-router.post('/admin1/:username', async function(req, res, next) {
-  console.log(req.params.username);
-  // usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
+/* get admin username on page */
+router.get('/admin1/:username', async function(req, res, next) {
+  usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
   res.redirect('/users/admin'); 
 });
-
-// // /* post admin page */
-// router.post("/:id/admin", function (req, res, next) {
-//   usercontroller.updateUser(req, res, next);
-//   res.redirect('/users/admin'); 
-// })
 
 module.exports = router;

@@ -23,7 +23,7 @@ module.exports = {
                 role: "user",
                 status: "inactive"
             });
-            User.create(user, function(error, savedDocument) {
+            User.create(user, function(error) {
                 if (error) console.log(error);
                 db.close();
             });
@@ -31,16 +31,9 @@ module.exports = {
     },
     updateUser: async function (req, x, y, status, user) {
         const db = await mongoConnect.mongoConnect();                        // connect
-            let userupdate = new User({                                           // create obejct in schema-format
-                status: status
-            });
-            let userup = user;
-            console.log("params: " + userup);
-            await User.findOneAndUpdate(userupdate, {$set:userup}, function(error, savedDocument) {
+            User.findOneAndUpdate({username: user}, {status: status}, function(error) {
                         if (error){
                             console.log(error);
-                        }else{
-                            console.log(savedDocument);
                         }
                         db.close();
                     }); 
