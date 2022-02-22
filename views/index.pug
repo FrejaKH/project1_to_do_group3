@@ -1,6 +1,46 @@
 extends layout
 
 block content
-    main.frontpage
-        h2= subtitle
-
+    main.main_add
+            div.list_container
+                h1 To Do list
+                div.form_container
+                    table
+                        tr#headtag
+                            th.padding Title
+                            th.padding Description
+                            th.padding Startdate
+                            th.padding Deadline
+                            th.padding Priority
+                        each dept in todos
+                            form(method='POST' action=`/${dept._id}/completed`)
+                                        td.padding #{dept.title}
+                                        td.padding #{dept.description}
+                                        td.padding #{dept.startdate.toLocaleDateString()}
+                                        td.padding #{dept.deadline.toLocaleDateString()}
+                                        td.padding #{dept.priority}
+                                        td.padding
+                                            button(type='submit') Done
+                                        tr
+            div.list_container
+                h1 dryitfkulygiuhfuckw 
+                div.form_container
+                    table
+                        tr#headtag
+                            th.padding Title
+                            th.padding Description
+                            th.padding Startdate
+                            th.padding Deadline
+                            th.padding Priority
+                        each dept in doneTodos 
+                            form(method='POST' action=`/${dept._id}/completed`)
+                                        td.padding #{dept.title}
+                                        td.padding #{dept.description}
+                                        td.padding #{dept.startdate.toLocaleDateString()}
+                                        td.padding #{dept.deadline.toLocaleDateString()}
+                                        td.padding #{dept.priority}
+                                        td.padding
+                                            button(type='submit') Undone
+                                        tr
+                                    
+                                    

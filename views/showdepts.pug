@@ -1,17 +1,15 @@
 extends layout
 
 block content
-    main.otherpage
-        aside
-        section
-            h2= subtitle
-            table.disp
+    main.main_add
+            div.list_container
+                h1=title 
+                div.form_container
+                     table.disp
                 tr
                     th Name
                     th Address
                 each dept in departments
                     tr
-                        td #{dept.name}
-                        td #{dept.address.no} #{dept.address.street}, #{dept.address.zip} #{dept.address.town}
-        aside
-    include footer.pug
+                        td #{dept.title}
+                        td #{dept.description} #{dept.startdate}, #{dept.deadline} #{dept.prioriy}
