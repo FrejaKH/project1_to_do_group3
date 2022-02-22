@@ -8,8 +8,9 @@ html
         header
             nav
                 ul
-                    li 
-                        a(href='/users/admin') Admin
+                    if(user === 'zantex94')
+                        li
+                            a(href='/users/admin') Admin
                     li
                         a(href='/todo') To Do List
                     li

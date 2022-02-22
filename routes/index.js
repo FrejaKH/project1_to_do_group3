@@ -23,8 +23,10 @@ router.get('/departments', async function(req, res, next) {
 
 // GET page with "Add to do"
 router.get('/addtodo', function(req, res, next) {
+
     res.render('addtodo', {
-        title: 'Add To Do'
+        title: 'Add To Do',
+        user: req.signedCookies.User,
     });
 });
 

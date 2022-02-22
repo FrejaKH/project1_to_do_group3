@@ -23,7 +23,7 @@ router.post('/signup', function(req, res, next) {
 /* GET login page */
 router.get('/login', function(req, res, next) {
   // check if there is a cookie. if it´s empty login otherwise go to addtodo page.
-  console.log('Signed Cookies: ', req.signedCookies.User);
+  // console.log('Signed Cookies: ', req.signedCookies.User);
   if(typeof(req.signedCookies.User) === "undefined"){
   res.render('login', {
         title: TITLE,
