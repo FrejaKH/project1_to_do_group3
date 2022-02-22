@@ -3,8 +3,6 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 const TITLE = 'Todo';
 const usercontroller = require('../controllers/userController');
-const Cookies = require('cookies');
-const cookieParser = require('cookie-parser');
 
 /* GET users listing.  This is a DUMMY this route is caught in index.js */
 router.get('/', function(req, res, next) {
@@ -17,43 +15,63 @@ router.get('/signup', function(req, res, next) {
         subtitle: 'Signup'
     });
 });
-/* Post signup page */
+/* Post signup page for new user */
 router.post('/signup', function(req, res, next) {
   usercontroller.postNewUser(req, res, next);                         // write user into db
   res.redirect('/users/login');                                    // go to login page
 });
-/* GET signup page */
+/* GET login page */
 router.get('/login', function(req, res, next) {
+  // check if there is a cookie. if it´s empty login otherwise go to addtodo page.
+  if(req.signedCookies.User === ""){
   res.render('login', {
         title: TITLE,
         subtitle: 'Login'
     });
-});
-/* post signup page */
+  }else{
+    res.render('addtodo', {
+      title: TITLE,
+      subtitle: 'addtodo'
+  });
+  }
+}); 
+/* post login page for log in */
 router.post('/login', async function(req, res, next) {
-  // console.log("worked");
-  // console.log(req.body.password);
-  // console.log(req.body.username);
-  let users = await usercontroller.getUser({username: req.body.username});             // read users.
-  if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
-    console.log("log in worked");
+  console.log(req.signedCookies.User);
+  // get all users.
+  let users = await usercontroller.getUser({username: req.body.username});
+  // console.log(users);
+  if(typeof(users) !== "undefined"){
+    res.render('login', {
+      title: TITLE,
+      subtitle: 'Login'
+  }); 
+  }else{
+  if(users[0].status == "adminactive"){
     res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
     res.render('addtodo', {
       title: TITLE,
       subtitle: 'addtodo'
   }); 
   }else{
-    console.log("not logged in");
-    res.render('login', {
-      title: TITLE,
-      subtitle: 'Login'
-  }); 
-  }                                 // go to login page
+    if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
+      res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
+      res.render('addtodo', {
+        title: TITLE,
+        subtitle: 'addtodo'
+    }); 
+    }else{
+      res.render('login', {
+        title: TITLE,
+        subtitle: 'Login'
+    }); 
+    }
+  }  
+}          
 });
 
-/* GET logout page */
+/* GET logout page for resetting user cookies and reference the user to log in page. */
 router.get('/logout', function(req, res, next) {
-  console.log("worked");
   res.cookie('User','', { signed : true, maxAge: 0 });
   res.render('login', {
         title: TITLE,
@@ -61,25 +79,47 @@ router.get('/logout', function(req, res, next) {
     });
 });
 
-/* GET signup page */
+/* GET admin page only for admin */
 router.get('/admin', async function(req, res, next) {
+  // check if the user is admin.
+  if(req.signedCookies.User === "zantex94" ){
   let users = await usercontroller.getUser({});             // read users.
   res.render('admin', {
         title: TITLE,
         subtitle: 'Activate/Deactivate users',
         users
     });
+  }else{
+    res.render('login', {
+      title: TITLE,
+      subtitle: 'Login'
+  });
+  }
 });
 
-/* GET admin username on page */
+/* GET admin username for activating a user in the system. */
 router.get('/admin/:username', async function(req, res, next) {
+  if(req.signedCookies.User === "zantex94" ){
   usercontroller.updateUser(req, res, next, 'active', req.params.username);
   res.redirect('/users/admin'); 
+}else{
+  res.render('login', {
+    title: TITLE,
+    subtitle: 'Login'
 });
-/* GET admin username on page */
+} 
+});
+/* GET admin username for deactivating a user in the system. */
 router.get('/admin1/:username', async function(req, res, next) {
-  usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
-  res.redirect('/users/admin'); 
+  if(req.signedCookies.User === "zantex94" ){
+    usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
+    res.redirect('/users/admin'); 
+  }else{
+    res.render('login', {
+      title: TITLE,
+      subtitle: 'Login'
+  });
+  } 
 });
 
 module.exports = router;
