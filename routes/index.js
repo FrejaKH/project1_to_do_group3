@@ -36,22 +36,22 @@ router.post("/addtodo", function (req, res, next) {
 
 /* Btn */
 router.post("/:id/completed", function (req, res, next) {
-  controller.checkBtn(req, res, next); 
+  controller.checkBtn(req, res, next);
   res.redirect("/");
 });
 
 // GET page with finished to dos
-router.get('/finishedtodos', function(req, res, next){
-    res.render('finishedtodos', {
-        title: 'Finished To Dos'
-    });
-})
+router.get("/finishedtodos", function (req, res, next) {
+  res.render("finishedtodos", {
+    title: "Finished To Dos",
+  });
+});
 
 // GET page with overwritten to dos
-router.get('/overwrittentodos', function(req, res, next){
-    res.render('overwrittentodos', {
-        title: 'Overwritten To Dos'
-    });
-})
+router.get("/overwrittentodos", function (req, res, next) {
+  res.render("overwrittentodos", {
+    title: "Overwritten To Dos",
+  });
+});
 
 module.exports = router;
