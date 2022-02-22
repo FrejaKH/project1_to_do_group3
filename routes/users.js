@@ -3,24 +3,13 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 const TITLE = 'Todo';
 const usercontroller = require('../controllers/userController');
-var cookieParser = require('cookie-parser')
-
-// app.use(cookieParser())
+const Cookies = require('cookies');
+const cookieParser = require('cookie-parser');
 
 /* GET users listing.  This is a DUMMY this route is caught in index.js */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-/* GET show html form for users */
-router.get('/register', async function(req, res, next) {
-  let departments = await dep.getDepts({});             // read departments, users work in them
-  res.render('register', {
-      title: TITLE,
-      subtitle: 'Register User',
-      departments
-    });
-});
-
 /* GET signup page */
 router.get('/signup', function(req, res, next) {
   res.render('signup', {
@@ -41,10 +30,37 @@ router.get('/login', function(req, res, next) {
     });
 });
 /* post signup page */
-router.post('/login', function(req, res, next) {
-  
-
+router.post('/login', async function(req, res, next) {
+  // console.log("worked");
+  // console.log(req.body.password);
+  // console.log(req.body.username);
+  let users = await usercontroller.getUser({username: req.body.username});             // read users.
+  if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
+    console.log("log in worked");
+    res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
+    res.render('addtodo', {
+      title: TITLE,
+      subtitle: 'addtodo'
+  }); 
+  }else{
+    console.log("not logged in");
+    res.render('login', {
+      title: TITLE,
+      subtitle: 'Login'
+  }); 
+  }                                 // go to login page
 });
+
+/* GET logout page */
+router.get('/logout', function(req, res, next) {
+  console.log("worked");
+  res.cookie('User','', { signed : true, maxAge: 0 });
+  res.render('login', {
+        title: TITLE,
+        subtitle: 'Login'
+    });
+});
+
 /* GET signup page */
 router.get('/admin', async function(req, res, next) {
   let users = await usercontroller.getUser({});             // read users.
@@ -55,12 +71,12 @@ router.get('/admin', async function(req, res, next) {
     });
 });
 
-/* get admin username on page */
+/* GET admin username on page */
 router.get('/admin/:username', async function(req, res, next) {
   usercontroller.updateUser(req, res, next, 'active', req.params.username);
   res.redirect('/users/admin'); 
 });
-/* get admin username on page */
+/* GET admin username on page */
 router.get('/admin1/:username', async function(req, res, next) {
   usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
   res.redirect('/users/admin'); 
