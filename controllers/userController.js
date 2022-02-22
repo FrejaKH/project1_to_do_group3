@@ -30,14 +30,19 @@ module.exports = {
         });
     },
     updateUser: async function (req, x, y, status, user) {
-        const db = await mongoConnect.mongoConnect();                          // connect
+        const db = await mongoConnect.mongoConnect();                        // connect
             let userupdate = new User({                                           // create obejct in schema-format
                 status: status
             });
-            User.findAndUpdate(userupdate, function(error, savedDocument) {
-                        if (error) console.log(error);
+            let userup = user;
+            console.log("params: " + userup);
+            await User.findOneAndUpdate(userupdate, {$set:userup}, function(error, savedDocument) {
+                        if (error){
+                            console.log(error);
+                        }else{
+                            console.log(savedDocument);
+                        }
                         db.close();
-                    });
-        
+                    }); 
     }
 };

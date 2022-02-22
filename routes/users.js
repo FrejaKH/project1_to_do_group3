@@ -55,14 +55,14 @@ router.get('/admin', async function(req, res, next) {
 });
 
 /* post admin page */
-router.get('admin/:username', async function(req, res, next) {
-  console.log(req.params.username)
-  // usercontroller.updateUser(req, res, next, 'active', req.params.username);
+router.get('/admin/:username', async function(req, res, next) {
+  // console.log(req.params.username);
+  usercontroller.updateUser(req, res, next, 'active', req.params.username);
   res.redirect('/users/admin'); 
 });
 /* post admin page */
 router.post('/admin1/:username', async function(req, res, next) {
-  console.log(req.params.username)
+  console.log(req.params.username);
   // usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
   res.redirect('/users/admin'); 
 });
