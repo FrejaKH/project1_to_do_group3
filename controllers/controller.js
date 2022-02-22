@@ -4,14 +4,15 @@ const Todoschema = require("../models/todoschema");
 
 module.exports = {
   getTodo: async function (que, sort) {
-    const db = await mongoConnect.mongoConnect(); // connect
-    const todolist = await Todoschema.find(que, null, sort); // read
+    const db = await mongoConnect.mongoConnect(); // connect to the databse
+    const todolist = await Todoschema.find(que, null, sort); // read/find from the database
     db.close();
     return todolist;
   },
 
   postTodo: async function (req) {
-    const db = await mongoConnect.mongoConnect(); // connect
+    const db = await mongoConnect.mongoConnect(); // connect to the database
+    // new object from the Schema, which says that the values are the values from reg.body which are the datas from the form
     let todolist = new Todoschema({
       title: req.body.title,
       description: req.body.description,
@@ -19,9 +20,8 @@ module.exports = {
       deadline: req.body.deadline,
       priority: req.body.priority,
     });
-
+    // funciton that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
-      // write dept
       if (error) console.log(error);
       console.log(savedDocument);
       db.close();

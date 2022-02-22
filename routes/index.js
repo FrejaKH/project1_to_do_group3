@@ -4,7 +4,7 @@ const controller = require("../controllers/controller");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  let departments = await controller.getTodo({}, { sort: { priority: 1 } });
+  let todolist = await controller.getTodo({}, { sort: { priority: 1 } });
   controller.getTodo({}, { sort: { priority: 1 } }).then(function (results) {
     let todos = results.filter(function (todo) {
       return !todo.done;
@@ -14,22 +14,21 @@ router.get("/", async function (req, res, next) {
     });
     res.render("index", {
       title: `test`,
-      subtitle: "Display Departments",
       todos: todos,
       doneTodos: doneTodos,
-      departments,
+      todolist,
     });
   });
 });
 
-/* GET show html form for departments */
+/* GET page with "add to do" */
 router.get("/addtodo", function (req, res, next) {
   res.render("addtodo", {
     title: "Add To Do",
   });
 });
 
-/* POST handle form data for departments */
+/* POST function that uses a function from controller to post data into the database */
 router.post("/addtodo", function (req, res, next) {
   controller.postTodo(req, res, next); // write department into db
   res.redirect("/");
