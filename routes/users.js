@@ -41,14 +41,14 @@ router.post('/login', async function(req, res, next) {
   console.log(req.signedCookies.User);
   // get all users.
   let users = await usercontroller.getUser({username: req.body.username});
-  // console.log(typeof(users));
   if(users.length < 1){
     res.render('login', {
       title: TITLE,
-      subtitle: 'Login'
+      subtitle: 'Login',
+      error: 'Account dosen´t exsist',
   }); 
   }else{
-  if(users[0].status == "adminactive"){
+  if(users[0].status == "adminactive" && await bcrypt.compare(req.body.password, ''+users[0].password)){
     res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
     res.render('addtodo', {
       title: TITLE,
@@ -64,7 +64,8 @@ router.post('/login', async function(req, res, next) {
     }else{
       res.render('login', {
         title: TITLE,
-        subtitle: 'Login'
+        subtitle: 'Login',
+        error: 'Username or Password are wrong.',
     }); 
     }
   }  

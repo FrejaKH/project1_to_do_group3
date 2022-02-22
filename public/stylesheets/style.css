@@ -97,6 +97,10 @@ main{
     color: #ffffff;
     margin-left: 28%;
 }
+.label_login_style_error{
+    color: red;
+    margin-left: 28%;
+}
 .h2login{
     color: white;
     font-size: 50px;

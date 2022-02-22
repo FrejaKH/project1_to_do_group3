@@ -5,7 +5,7 @@ block content
         div.signup_container
             h2.h2login= subtitle
             div.container_login
-                form(action="/users/signup" method="Post")
+                form(id="registerForm" action="/users/signup" method="Post")
                     div.form_pair_signup
                         label.label_signup_style Firstname
                         input(class="inputstyle" type="text" name="firstname" placeholder="Firstname")
@@ -26,7 +26,7 @@ block content
                         input(class="inputstyle" type="text" name="password" placeholder="password")
                     div.form_pair_signup
                         label.label_signup_style Repeat password
-                        input(class="inputstyle" type="text" placeholder="repeat password")                   
+                        input(class="inputstyle" type="text" name="password1" placeholder="repeat password")                   
                     div.form_pair_signup
                         a(class="inputstyle" style="color: blue" href="http://localhost:3000/users/login") Already account?
                     div.form_pair_signup
