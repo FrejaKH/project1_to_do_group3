@@ -12,13 +12,13 @@ block content
                             th.padding Startdate
                             th.padding Deadline
                             th.padding Priority
-                        each dept in todos
-                            form(method='POST' action=`/${dept._id}/completed`)
-                                        td.padding #{dept.title}
-                                        td.padding #{dept.description}
-                                        td.padding #{dept.startdate.toLocaleDateString()}
-                                        td.padding #{dept.deadline.toLocaleDateString()}
-                                        td.padding #{dept.priority}
+                        each todo in todos
+                            form(method='POST' action=`/${todo._id}/completed`)
+                                        td.padding #{todo.title}
+                                        td.padding #{todo.description}
+                                        td.padding #{todo.startdate.toLocaleDateString()}
+                                        td.padding #{todo.deadline.toLocaleDateString()}
+                                        td.padding #{todo.priority}
                                         td.padding
                                             button(type='submit') Done
                                         tr
@@ -32,15 +32,14 @@ block content
                             th.padding Startdate
                             th.padding Deadline
                             th.padding Priority
-                        each dept in doneTodos 
-                            form(method='POST' action=`/${dept._id}/completed`)
-                                        td.padding #{dept.title}
-                                        td.padding #{dept.description}
-                                        td.padding #{dept.startdate.toLocaleDateString()}
-                                        td.padding #{dept.deadline.toLocaleDateString()}
-                                        td.padding #{dept.priority}
-                                        td.padding
-                                            button(type='submit') Undone
-                                        tr
-                                    
+                        each todo in doneTodos 
+                            form(method='POST' action=`/${todo._id}/completed`)
+                                        tr.linethrough
+                                            td.padding #{todo.title}
+                                            td.padding #{todo.description}
+                                            td.padding #{todo.startdate.toLocaleDateString()}
+                                            td.padding #{todo.deadline.toLocaleDateString()}
+                                            td.padding #{todo.priority}
+                                            td.padding
+                                                button(type='submit') Undone                                   
                                     

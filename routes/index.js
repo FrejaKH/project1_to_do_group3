@@ -4,7 +4,7 @@ const controller = require("../controllers/controller");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  let departments = await controller.getTodo({}, { sort: { priority: 1 } });
+  let todolist = await controller.getTodo({}, { sort: { priority: 1 } });
   controller.getTodo({}, { sort: { priority: 1 } }).then(function (results) {
     let todos = results.filter(function (todo) {
       return !todo.done;
@@ -17,7 +17,7 @@ router.get("/", async function (req, res, next) {
       subtitle: "Display Departments",
       todos: todos,
       doneTodos: doneTodos,
-      departments,
+      todolist,
     });
   });
 });
@@ -37,22 +37,22 @@ router.post("/addtodo", function (req, res, next) {
 
 /* Btn */
 router.post("/:id/completed", function (req, res, next) {
-  controller.checkBtn(req, res, next); 
+  controller.checkBtn(req, res, next);
   res.redirect("/");
 });
 
 // GET page with finished to dos
-router.get('/finishedtodos', function(req, res, next){
-    res.render('finishedtodos', {
-        title: 'Finished To Dos'
-    });
-})
+router.get("/finishedtodos", function (req, res, next) {
+  res.render("finishedtodos", {
+    title: "Finished To Dos",
+  });
+});
 
 // GET page with overwritten to dos
-router.get('/overwrittentodos', function(req, res, next){
-    res.render('overwrittentodos', {
-        title: 'Overwritten To Dos'
-    });
-})
+router.get("/overwrittentodos", function (req, res, next) {
+  res.render("overwrittentodos", {
+    title: "Overwritten To Dos",
+  });
+});
 
 module.exports = router;
