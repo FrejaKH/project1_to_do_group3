@@ -20,7 +20,7 @@ module.exports = {
       deadline: req.body.deadline,
       priority: req.body.priority,
     });
-    // funciton that creates documents into the database
+    // function that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
       if (error) console.log(error);
       console.log(savedDocument);
