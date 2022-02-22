@@ -1,35 +1,44 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const TITLE = 'Employee Pattern Project';
-const controller = require('../controllers/controller');
+const controller = require("../controllers/controller");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
-        title: TITLE,
-        subtitle: 'Front Page'
+router.get("/", async function (req, res, next) {
+  let departments = await controller.getTodo({}, { sort: { priority: 1 } });
+  controller.getTodo({}, { sort: { priority: 1 } }).then(function (results) {
+    let todos = results.filter(function (todo) {
+      return !todo.done;
     });
+    let doneTodos = results.filter(function (todo) {
+      return todo.done;
+    });
+    res.render("index", {
+      title: `test`,
+      subtitle: "Display Departments",
+      todos: todos,
+      doneTodos: doneTodos,
+      departments,
+    });
+  });
 });
 
-/* GET show departments */
-router.get('/departments', async function(req, res, next) {
-    let departments = await con.getDepts({}, {sort: {title: 1}});   // read depts from db
-    res.render('showdepts', {
-        title: TITLE,
-        subtitle: 'Display Departments',
-        departments
-    });
-});
 /* GET show html form for departments */
-router.get('/addtodo', function(req, res, next) {
-    res.render('addtodo', {
-        title: 'Add To Do'
-    });
+router.get("/addtodo", function (req, res, next) {
+  res.render("addtodo", {
+    title: "Add To Do",
+  });
 });
+
 /* POST handle form data for departments */
-router.post('/addtodo', function(req, res, next) {
-    controller.postTodo(req, res, next);                                   // write department into db
-    res.redirect('/');
+router.post("/addtodo", function (req, res, next) {
+  controller.postTodo(req, res, next); // write department into db
+  res.redirect("/");
+});
+
+/* Btn */
+router.post("/:id/completed", function (req, res, next) {
+  controller.checkBtn(req, res, next); 
+  res.redirect("/");
 });
 
 module.exports = router;
