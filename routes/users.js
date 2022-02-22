@@ -23,7 +23,8 @@ router.post('/signup', function(req, res, next) {
 /* GET login page */
 router.get('/login', function(req, res, next) {
   // check if there is a cookie. if it´s empty login otherwise go to addtodo page.
-  if(req.signedCookies.User === ""){
+  console.log('Signed Cookies: ', req.signedCookies.User);
+  if(typeof(req.signedCookies.User) === "undefined"){
   res.render('login', {
         title: TITLE,
         subtitle: 'Login'
@@ -40,8 +41,8 @@ router.post('/login', async function(req, res, next) {
   console.log(req.signedCookies.User);
   // get all users.
   let users = await usercontroller.getUser({username: req.body.username});
-  // console.log(users);
-  if(typeof(users) !== "undefined"){
+  // console.log(typeof(users));
+  if(users.length < 1){
     res.render('login', {
       title: TITLE,
       subtitle: 'Login'
