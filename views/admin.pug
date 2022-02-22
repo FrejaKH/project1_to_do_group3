@@ -13,23 +13,22 @@ block content
                         th E-mail
                         th Username
                         th Status
-                        th 
-                    tr
-                        td René
-                        td Seebach
-                        td reneseebach@gmail.com
-                        td zantex94
-                        td active
-                        td
-                            form(action="")
-                            input(type="submit")
-                    tr
-                        td René
-                        td Seebach
-                        td reneseebach@gmail.com
-                        td zantex94
-                        td active
-                        td
-                            form(action="")
-                            input(type="submit")  
+                        th
+                    each user in users
+                        if(user.status != "adminactive")     
+                            tr
+                                td #{user.firstname}
+                                td #{user.lastname}
+                                td #{user.email}
+                                td #{user.username}
+                                td #{user.status}
+                                if(user.status == "inactive")
+                                    td
+                                        a(href=`/users/admin/${user.username}`)
+                                                activate activate
+                                else
+                                    td
+                                        a(href=`/users/admin1/${user.username}`)
+                                                deactivate deactivate
+
     include footer.pug
