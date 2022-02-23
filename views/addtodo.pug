@@ -8,10 +8,10 @@ block content
                 form(id="add_form" action="/addtodo" method="POST")
                     div.form_pair
                         label(for="title") Title 
-                        input(id="title" type="text" name="title" placeholder="add title" required)
+                        input(id="title" type="text" name="title" placeholder="Add title" required)
                     div.form_pair
                         label(for="title") To Do
-                        input(id="description" type="textarea" name="description" placeholder="add description" required)
+                        input(id="description" type="textarea" name="description" placeholder="Add description" required)
                     div.form_pair
                         label(for="title") Start Date 
                         input(id="startdate" type="date" name="startdate" placeholder="dd-mm-yyyy" required)
@@ -20,7 +20,7 @@ block content
                         input(id="deadline" type="date" name="deadline" placeholder="dd-mm-yyyy" required)
                     div.form_pair
                         label(for="title") Priority 
-                        input(id="priority" type="number" name="priority" placeholder="priority 1-5" min="1" max="5")
+                        input(id="priority" type="number" name="priority" placeholder="Priority 1-5" min="1" max="5")
                     div.submit
                         input(id="add_btn" type="submit" value="Add To Do")
     include footer.pug                        
