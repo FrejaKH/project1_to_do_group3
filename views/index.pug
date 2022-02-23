@@ -13,6 +13,7 @@ block content
                             th.padding Deadline
                             th.padding Priority
                         each todo in todos
+                            - if (!todo.expired) {
                             form(method='POST' action=`/${todo._id}/completed`)
                                     tr.aligncenter
                                         td.padding #{todo.title}
@@ -21,10 +22,11 @@ block content
                                         td.padding #{todo.deadline.toLocaleDateString()}
                                         td.padding #{todo.priority}
                                         td.padding
-                                            button(type='submit') Done
+                                            button(type='submit' class="btn w-xs green") Done
                                         tr
+                                        - }
             div.list_container
-                h1 Finished To Dos  
+                h1 Completed  
                 div.form_container
                     table
                         tr#headtag
@@ -42,5 +44,24 @@ block content
                                             td.padding #{todo.deadline.toLocaleDateString()}
                                             td.padding #{todo.priority}
                                             td.padding
-                                                button(type='submit') Undone                                   
-                                    
+                                                button(type='submit' class="btn w-xs red") Undo
+            div.list_container
+                h1 Expired 
+                div.form_container
+                    table
+                        tr#headtag
+                            th.padding Title
+                            th.padding Description
+                            th.padding Startdate
+                            th.padding Deadline
+                            th.padding Priority                            
+                        each todo in expiredTodos               
+                                            - if (todo.expired) {
+                                                        tr.linethrough.aligncenter
+                                                            td.padding #{todo.title}
+                                                            td.padding #{todo.description}
+                                                            td.padding #{todo.startdate.toLocaleDateString()}
+                                                            td.padding #{todo.deadline.toLocaleDateString()}
+                                                            td.padding #{todo.priority}
+                                                            td.padding
+                                            - }
