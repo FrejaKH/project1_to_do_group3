@@ -175,11 +175,13 @@ justify-content: center !important;
     height: 100vh;
     display: flex;
     justify-content: flex-start;
+    align-items: baseline !important;
     background-color:#c8dbdf;
 }
 .admin_header{
     display: flex;
     justify-content: center;
+    margin:20px 0;
 }
   /* Simplified version of Bootstrap's responsive table CSS */
   .table-responsive {
@@ -192,17 +194,19 @@ justify-content: center !important;
     width: 100%;
     table-layout: fixed;
   }
-  .table table td {
+  .table td {
       word-wrap: break-word;
       max-width: 200px;
       padding-left: 6%;
       border-bottom: 1pt solid black;
   }
-  .table table th {
+
+  .table th {
     word-wrap: break-word;
     max-width: 200px;
     padding-left: 1%;
     border-bottom: 1pt solid black;
+    padding-bottom:20px;
 }
   .table table tr {
     border-bottom: 2pt solid black;
