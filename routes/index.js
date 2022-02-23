@@ -35,7 +35,6 @@ router.get('/', function(req, res, next) {
     });
 // GET page with "Add to do"
 router.get('/addtodo', function(req, res, next) {
-    //   controller.postTodo(req, res, next); // write department into db
     res.render('addtodo', {
         title: 'Add To Do',
         user: req.signedCookies.User,
@@ -44,7 +43,7 @@ router.get('/addtodo', function(req, res, next) {
 
 /* POST function that uses a function from controller to post data into the database */
 router.post("/addtodo", function (req, res, next) {
-  controller.postTodo(req, res, next); // write department into db
+  controller.postTodo(req, res, next); // write to dos into db
   res.redirect("/todolist");
 });
 
