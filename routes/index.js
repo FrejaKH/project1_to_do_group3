@@ -61,9 +61,6 @@ router.get('/addtodo', function(req, res, next) {
 
 /* POST function that uses a function from controller to post data into the database */
 router.post("/addtodo", function (req, res, next) {
-<<<<<<< HEAD
-  controller.postTodo(req, res, next); // write to dos into db
-=======
     const user = req.signedCookies.User;
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
@@ -72,7 +69,6 @@ router.post("/addtodo", function (req, res, next) {
           });
         }else{
   controller.postTodo(req, res, next, user); // write department into db
->>>>>>> b5f07f1e3eae9f5bd60987bcc7a722f385c35f82
   res.redirect("/todolist");
         }
 });
