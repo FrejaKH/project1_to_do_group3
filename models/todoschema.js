@@ -22,7 +22,6 @@ const todoSchema = mongoose.Schema({
     required: true,
   },
   done: { type: Boolean, default: false },
-  expired: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Todo", todoSchema);
