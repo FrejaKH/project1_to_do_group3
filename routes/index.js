@@ -30,6 +30,8 @@ router.get("/todolist", async function (req, res, next) {
             doneTodos: doneTodos,
             expiredTodos: expiredTodos,
             todolist,
+            user: req.signedCookies.User,
+
           });
         });
     }
