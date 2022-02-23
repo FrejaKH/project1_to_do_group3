@@ -22,8 +22,10 @@ module.exports = {
     });
     // function that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
-      if (error) console.log(error);
-      console.log(savedDocument);
+      if (error){
+        console.log(error);
+      } 
+      // console.log(savedDocument);
       db.close();
     });
   },
