@@ -22,11 +22,11 @@ const todoSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  /*userId: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User', 
     required: true,
-  },*/
+  },
   done: { 
     type: Boolean, 
     default: false,

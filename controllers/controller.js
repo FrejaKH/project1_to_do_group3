@@ -19,7 +19,7 @@ module.exports = {
       startdate: req.body.startdate,
       deadline: req.body.deadline,
       priority: req.body.priority,
-      // username: user,
+      userId: user,
     });
     // console.log(user);
     // function that creates documents into the database

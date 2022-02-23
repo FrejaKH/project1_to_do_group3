@@ -2,17 +2,20 @@ var express = require("express");
 var router = express.Router();
 const TITLE = 'Todo';
 const controller = require('../controllers/controller');
+const usercontroller = require('../controllers/userController');
+
 /* GET index page. */ // Need to clean this up
 router.get("/todolist", async function (req, res, next) {
     const user = req.signedCookies.User;
+    let users = await usercontroller.getUser({username: user});
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
               title: TITLE,
               subtitle: 'Login'
           });
         }else{
-    let todolist = await controller.getTodo({}, { sort: { priority: 1 } });
-    controller.getTodo({}, { sort: { priority: 1 } }).then(function (results) {
+    let todolist = await controller.getTodo({userId: users[0]._id}, { sort: { priority: 1 } });
+    controller.getTodo({userId: users[0]._id}, { sort: { priority: 1 } }).then(function (results) {
         let todos = results.filter(function (todo) {
         return !todo.done;
         });
@@ -60,15 +63,17 @@ router.get('/addtodo', function(req, res, next) {
 });
 
 /* POST function that uses a function from controller to post data into the database */
-router.post("/addtodo", function (req, res, next) {
+router.post("/addtodo", async function (req, res, next) {
     const user = req.signedCookies.User;
+    let users = await usercontroller.getUser({username: user});
+    console.log(users)
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
               title: TITLE,
               subtitle: 'Login'
           });
         }else{
-  controller.postTodo(req, res, next, user); // write department into db
+  controller.postTodo(req, res, next, users[0]._id); // write department into db
   res.redirect("/todolist");
         }
 });
