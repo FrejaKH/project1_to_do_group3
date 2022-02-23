@@ -81,7 +81,7 @@ main {
     display:flex;
     align-items: center;
     flex-direction: column;
-    background-color: #AE927E;
+    background-color: #76a5af;
     padding:20px;
 }
 .container_login{
@@ -117,7 +117,7 @@ main {
     display:flex;
     justify-content:center;
     align-items: center;
-    background-color:#FBF2E1;
+    background-color:#c8dbdf;
 }
 
 
@@ -127,7 +127,7 @@ main {
     display:flex;
     align-items: center;
     flex-direction: column;
-    background-color: #AE927E;
+    background-color: #76a5af;
     padding:20px;
 }
 .container_signup{
@@ -164,7 +164,7 @@ justify-content: center !important;
     display:flex;
     justify-content:center;
     align-items: baseline !important;
-    background-color:#FBF2E1;
+    background-color:#c8dbdf;
 }
 .admin_header{
     display: flex;
@@ -296,13 +296,13 @@ justify-content: center !important;
 #add_btn{
     width:150px;
     height:50px;
-    background-color: #FBF2E1;
+    background-color: #c8dbdf;
     border: 1px solid #000000;
     margin:20px 0;
     cursor: pointer;
 }
 footer {
-    background-color: #AE927E;
+    background-color: #76a5af;
     color: white;
     display: grid;
     grid-template-columns: 1fr 1fr;
