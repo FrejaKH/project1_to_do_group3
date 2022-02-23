@@ -170,12 +170,11 @@ justify-content: center !important;
 }
 
 /*---------------------------------Admin page-------------------------------------*/
-.admin_page{
+#admin_page{
     width:100%;
-    min-height: 850px;
-    display:flex;
-    justify-content:center;
-    align-items: baseline !important;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
     background-color:#c8dbdf;
 }
 .admin_header{

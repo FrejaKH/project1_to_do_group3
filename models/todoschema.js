@@ -22,8 +22,15 @@ const todoSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  // username: {type: Schema.Types.ObjectId, ref: 'User'},
-  done: { type: Boolean, default: false },
+  /*userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User', 
+    required: true,
+  },*/
+  done: { 
+    type: Boolean, 
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Todo", todoSchema);

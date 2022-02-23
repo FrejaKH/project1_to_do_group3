@@ -21,6 +21,7 @@ module.exports = {
       priority: req.body.priority,
       // username: user,
     });
+    // console.log(user);
     // function that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
       if (error){
