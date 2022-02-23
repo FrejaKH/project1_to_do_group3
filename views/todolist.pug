@@ -14,7 +14,7 @@ block content
                             th.padding Priority
                         each todo in todos
                             - if (!todo.expired) {
-                            form(method='POST' action=`/${todo._id}/completed`)
+                            form(method='POST' action=`/todolist/${todo._id}/completed`)
                                     tr.aligncenter
                                         td.padding #{todo.title}
                                         td.padding #{todo.description}
@@ -36,7 +36,7 @@ block content
                             th.padding Deadline
                             th.padding Priority
                         each todo in doneTodos 
-                            form(method='POST' action=`/${todo._id}/completed`)
+                            form(method='POST' action=`/todolist/${todo._id}/completed`)
                                         tr.linethrough.aligncenter
                                             td.padding #{todo.title}
                                             td.padding #{todo.description}

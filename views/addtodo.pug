@@ -20,6 +20,7 @@ block content
                         input(id="deadline" type="date" name="deadline" placeholder="dd-mm-yyyy" required)
                     div.form_pair
                         label(for="title") Priority 
-                        input(id="priority" type="number" name="priority" placeholder="priority 1-5")
+                        input(id="priority" type="number" name="priority" placeholder="priority 1-5" min="1" max="5")
                     div.submit
                         input(id="add_btn" type="submit" value="Add To Do")
+    include footer.pug                        
