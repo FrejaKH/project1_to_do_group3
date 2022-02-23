@@ -1,15 +1,25 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    cpr: {
+    firstname: {
         type: String,
-        validate: {
-            validator: function(v) {
-                return /\d{6}-\d{4}/.test(v);
-            },
-            message: props => `${props.value} is not a valid CPR number!`
-        },
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
         unique: true,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
         required: true
     },
     email: {
@@ -20,34 +30,13 @@ const userSchema = mongoose.Schema({
             },
             message: props => `${props.value} is not a valid email address!`
         },
-        unique: true,
         required: true
     },
-    firstname: {
+    role: {
         type: String,
         required: true
+       
     },
-    middlename: {
-        type: String,
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    profile: {
-        type: String,
-        enum: ['admin', 'regular', 'pending'],
-        default: 'pending'
-    },
-    department: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Department',
-        required: true
-    }
 });
 
 module.exports = mongoose.model("User", userSchema, 'users');

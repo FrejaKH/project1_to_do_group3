@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const mongoConnect = require("../models/MongoConnection");
 const User = require("../models/User");
@@ -6,27 +5,36 @@ const User = require("../models/User");
 module.exports = {
     getUser: async function (que, sort) {
         const db = await mongoConnect.mongoConnect();                          // connect
-        const depts = await Dept.find(que, null, sort);                     // read
+        const users = await User.find(que, null, sort);                     // read
         db.close();
-        return books;
+        return users;
     },
 
-    postUser: async function (req) {
+    postNewUser: async function (req) {
         const db = await mongoConnect.mongoConnect();                          // connect
         bcrypt.hash(req.body.password, 10, function(err, hash) {
             let user = new User({                                           // create obejct in schema-format
-                cpr: req.body.cpr,
-                email: req.body.email,
                 firstname: req.body.firstname,
-                middlename: req.body.middlename,
                 lastname: req.body.lastname,
+                username: req.body.username,
                 password: hash,
-                department: req.body.department
+                email: req.body.email,
+                role: "user",
+                status: "inactive"
             });
-            User.create(user, function(error, savedDocument) {
+            User.create(user, function(error) {
                 if (error) console.log(error);
                 db.close();
             });
         });
+    },
+    updateUser: async function (req, x, y, status, user) {
+        const db = await mongoConnect.mongoConnect();                        // connect
+            User.findOneAndUpdate({username: user}, {status: status}, function(error) {
+                        if (error){
+                            console.log(error);
+                        }
+                        db.close();
+                    }); 
     }
 };

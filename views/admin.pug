@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    main.admin_page
+        section
+            div.admin_header
+                h2= subtitle
+            div.table-responsive    
+                table.table
+                    tr
+                        th Firstname
+                        th Lastname
+                        th E-mail
+                        th Username
+                        th Status
+                        th
+                    each user in users
+                        if(user.status != "adminactive")     
+                            tr
+                                td #{user.firstname}
+                                td #{user.lastname}
+                                td #{user.email}
+                                td #{user.username}
+                                td #{user.status}
+                                if(user.status == "inactive")
+                                    td
+                                        a(href=`/users/admin/${user.username}`)
+                                                activate activate
+                                else
+                                    td
+                                        a(href=`/users/admin1/${user.username}`)
+                                                deactivate deactivate
+
+    include footer.pug

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    main.frontpage
+        div.welcome_container
+            h2.h2welcome= subtitle
+            div.container_welcome
+                form(action="/users/login")
+                    input(class="buttonstyle" type="submit" name="login" value="Login")
+                br
+                form(action="/users/signup")
+                    input(class="buttonstyle" type="submit" name="signup" value="Signup")
+    include footer.pug   

@@ -4,18 +4,17 @@ html
         meta(charset='utf-8')
         title= 'To Do'
         link(rel='stylesheet', href='/stylesheets/style.css')
-        script(src='/javascripts/page.js')
     body
         header
             nav
                 ul
-                    li 
-                        a(href='/admin') Admin
+                    if(user == "zantex94")
+                        li
+                            a(href='/users/admin') Admin
                     li
-                        a(href='/') To Do List
+                        a(href='/todo') To Do List
                     li
                         a(href='/addtodo') Add To Do
                     li
-                        a(href='/logout') Logout
-
+                        a(href='/users/logout') Logout
         block content
