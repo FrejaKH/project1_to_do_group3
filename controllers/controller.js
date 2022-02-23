@@ -10,7 +10,7 @@ module.exports = {
     return todolist;
   },
 
-  postTodo: async function (req) {
+  postTodo: async function (req, res, next, user) {
     const db = await mongoConnect.mongoConnect(); // connect to the database
     // new object from the Schema, which says that the values are the values from reg.body which are the datas from the form
     let todolist = new Todoschema({
@@ -19,6 +19,7 @@ module.exports = {
       startdate: req.body.startdate,
       deadline: req.body.deadline,
       priority: req.body.priority,
+      // username: user,
     });
     // function that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
