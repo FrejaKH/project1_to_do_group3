@@ -21,13 +21,11 @@ module.exports = {
       priority: req.body.priority,
       userId: user,
     });
-    // console.log(user);
     // function that creates documents into the database
     Todoschema.create(todolist, function (error, savedDocument) {
       if (error){
         console.log(error);
       } 
-      // console.log(savedDocument);
       db.close();
     });
   },

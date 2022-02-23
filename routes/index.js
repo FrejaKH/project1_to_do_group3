@@ -6,16 +6,16 @@ const usercontroller = require('../controllers/userController');
 
 /* GET index page. */ // Need to clean this up
 router.get("/todolist", async function (req, res, next) {
-    const user = req.signedCookies.User;
-    let users = await usercontroller.getUser({username: user});
+  const user = req.signedCookies.User;
+  const userarr = user.split(",");
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
               title: TITLE,
               subtitle: 'Login'
           });
         }else{
-    let todolist = await controller.getTodo({userId: users[0]._id}, { sort: { priority: 1 } });
-    controller.getTodo({userId: users[0]._id}, { sort: { priority: 1 } }).then(function (results) {
+    let todolist = await controller.getTodo({userId: userarr[1]}, { sort: { priority: 1 } });
+    controller.getTodo({userId: userarr[1]}, { sort: { priority: 1 } }).then(function (results) {
         let todos = results.filter(function (todo) {
         return !todo.done;
         });
@@ -48,7 +48,6 @@ router.get('/', function(req, res, next) {
     });
 // GET page with "Add to do"
 router.get('/addtodo', function(req, res, next) {
-    const user = req.signedCookies.User;
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
               title: TITLE,
@@ -64,16 +63,15 @@ router.get('/addtodo', function(req, res, next) {
 
 /* POST function that uses a function from controller to post data into the database */
 router.post("/addtodo", async function (req, res, next) {
-    const user = req.signedCookies.User;
-    let users = await usercontroller.getUser({username: user});
-    console.log(users)
+  const user = req.signedCookies.User;
+  const userarr = user.split(",");
     if(typeof(req.signedCookies.User) === "undefined"){
         res.render('login', {
               title: TITLE,
               subtitle: 'Login'
           });
         }else{
-  controller.postTodo(req, res, next, users[0]._id); // write department into db
+  controller.postTodo(req, res, next, userarr[1]); // write department into db
   res.redirect("/todolist");
         }
 });

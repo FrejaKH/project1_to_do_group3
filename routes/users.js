@@ -23,7 +23,6 @@ router.post('/signup', function(req, res, next) {
 /* GET login page */
 router.get('/login', function(req, res, next) {
   // check if there is a cookie. if it´s empty login otherwise go to addtodo page.
-  // console.log('Signed Cookies: ', req.signedCookies.User);
   if(typeof(req.signedCookies.User) === "undefined"){
   res.render('login', {
         title: TITLE,
@@ -49,7 +48,7 @@ router.post('/login', async function(req, res, next) {
   }); 
   }else{
   if(users[0].status == "adminactive" && await bcrypt.compare(req.body.password, ''+users[0].password)){
-    res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
+    res.cookie('User', users[0].username + ',' + users[0]._id , { signed : true, maxAge: 1000*60*60*24*7 });
     res.render('addtodo', {
       title: TITLE,
       subtitle: 'addtodo',
@@ -57,7 +56,7 @@ router.post('/login', async function(req, res, next) {
   }); 
   }else{
     if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
-      res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
+      res.cookie('User', users[0].username + ',' + users[0]._id , { signed : true, maxAge: 1000*60*60*24*7 });
       res.render('addtodo', {
         title: TITLE,
         subtitle: 'addtodo',
@@ -87,7 +86,9 @@ router.get('/logout', function(req, res, next) {
 /* GET admin page only for admin */
 router.get('/admin', async function(req, res, next) {
   // check if the user is admin.
-  if(req.signedCookies.User === "zantex94" ){
+  const user = req.signedCookies.User;
+  const userarr = user.split(",");
+  if(userarr[0] === "zantex94" ){
   let users = await usercontroller.getUser({});             // read users.
   res.render('admin', {
         title: TITLE,
@@ -104,7 +105,9 @@ router.get('/admin', async function(req, res, next) {
 
 /* GET admin username for activating a user in the system. */
 router.get('/admin/:username', async function(req, res, next) {
-  if(req.signedCookies.User === "zantex94" ){
+  const user = req.signedCookies.User;
+  const userarr = user.split(",");
+  if(userarr[0] === "zantex94" ){
   usercontroller.updateUser(req, res, next, 'active', req.params.username);
   res.redirect('/users/admin'); 
 }else{
@@ -116,7 +119,9 @@ router.get('/admin/:username', async function(req, res, next) {
 });
 /* GET admin username for deactivating a user in the system. */
 router.get('/admin1/:username', async function(req, res, next) {
-  if(req.signedCookies.User === "zantex94" ){
+  const user = req.signedCookies.User;
+  const userarr = user.split(",");
+  if(userarr[0] === "zantex94" ){
     usercontroller.updateUser(req, res, next, 'inactive', req.params.username);
     res.redirect('/users/admin'); 
   }else{
