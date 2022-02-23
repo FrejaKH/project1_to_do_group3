@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 const todoSchema = mongoose.Schema({
   title: {
@@ -21,6 +22,7 @@ const todoSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  // username: {type: Schema.Types.ObjectId, ref: 'User'},
   done: { type: Boolean, default: false },
 });
 

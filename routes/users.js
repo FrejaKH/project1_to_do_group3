@@ -52,14 +52,17 @@ router.post('/login', async function(req, res, next) {
     res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
     res.render('addtodo', {
       title: TITLE,
-      subtitle: 'addtodo'
+      subtitle: 'addtodo',
+      user: req.signedCookies.User,
   }); 
   }else{
     if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
       res.cookie('User', users[0].username + '', { signed : true, maxAge: 1000*60*60*24*7 });
       res.render('addtodo', {
         title: TITLE,
-        subtitle: 'addtodo'
+        subtitle: 'addtodo',
+        user: req.signedCookies.User,
+
     }); 
     }else{
       res.render('login', {
