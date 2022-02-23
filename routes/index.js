@@ -70,9 +70,9 @@ router.post("/addtodo", async function (req, res, next) {
               title: TITLE,
               subtitle: 'Login'
           });
-        }else{
-  controller.postTodo(req, res, next, userarr[1]); // write department into db
-  res.redirect("/todolist");
+    }else{
+        controller.postTodo(req, res, next, userarr[1]); // write to dos into db
+        res.redirect("/todolist");
         }
 });
 
