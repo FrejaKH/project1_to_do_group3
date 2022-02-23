@@ -17,8 +17,20 @@ router.get('/signup', function(req, res, next) {
 });
 /* Post signup page for new user */
 router.post('/signup', function(req, res, next) {
-  usercontroller.postNewUser(req, res, next);                         // write user into db
-  res.redirect('/users/login');                                    // go to login page
+  let bool = usercontroller.postNewUser(req, res, next);                         // write user into db
+  if(bool == true){
+    res.render('login', {
+      title: TITLE,
+      subtitle: 'Login'
+  });
+  }else{
+    res.render('signup', {
+      title: TITLE,
+      subtitle: 'signup',
+      error: 'Username exsist', 
+  });
+  }
+
 });
 /* GET login page */
 router.get('/login', function(req, res, next) {

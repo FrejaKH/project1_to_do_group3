@@ -22,8 +22,14 @@ module.exports = {
                 status: "inactive"
             });
             User.create(user, function(error) {
-                if (error) console.log(error);
-                db.close();
+                if (error){
+                    console.log(error);
+                    db.close();
+                    return true;
+                }else{
+                    db.close();
+                    return true;
+                } 
             });
         });
     },
