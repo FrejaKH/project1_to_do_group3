@@ -29,6 +29,7 @@ router.get('/login', function(req, res, next) {
         subtitle: 'Login'
     });
   }else{
+    console.log("get login ref: addtodo");
     res.render('addtodo', {
       title: TITLE,
       subtitle: 'addtodo'
