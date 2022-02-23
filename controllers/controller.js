@@ -9,7 +9,6 @@ module.exports = {
     db.close();
     return todolist;
   },
-
   postTodo: async function (req, res, next, user) {
     const db = await mongoConnect.mongoConnect(); // connect to the database
     // new object from the Schema, which says that the values are the values from reg.body which are the datas from the form
@@ -29,7 +28,6 @@ module.exports = {
       db.close();
     });
   },
-
   checkBtn: async function (req, res) {
     await mongoConnect.mongoConnect();
     let todoId = req.params.id;

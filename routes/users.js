@@ -37,8 +37,7 @@ router.get('/login', function(req, res, next) {
 }); 
 /* post login page for log in */
 router.post('/login', async function(req, res, next) {
-  console.log(req.signedCookies.User);
-  // get all users.
+  // get user.
   let users = await usercontroller.getUser({username: req.body.username});
   if(users.length < 1){
     res.render('login', {
@@ -47,6 +46,7 @@ router.post('/login', async function(req, res, next) {
       error: 'Account dosen´t exsist',
   }); 
   }else{
+    // if admin don´t check status.
   if(users[0].status == "adminactive" && await bcrypt.compare(req.body.password, ''+users[0].password)){
     res.cookie('User', users[0].username + ',' + users[0]._id , { signed : true, maxAge: 1000*60*60*24*7 });
     res.render('addtodo', {
@@ -55,6 +55,7 @@ router.post('/login', async function(req, res, next) {
       user: req.signedCookies.User,
   }); 
   }else{
+    // check if there is a user with password and if the user is active.
     if(users.length >= 1 && await bcrypt.compare(req.body.password, ''+users[0].password) && users[0].status == "active"){
       res.cookie('User', users[0].username + ',' + users[0]._id , { signed : true, maxAge: 1000*60*60*24*7 });
       res.render('addtodo', {

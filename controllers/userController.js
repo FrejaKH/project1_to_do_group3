@@ -9,7 +9,6 @@ module.exports = {
         db.close();
         return users;
     },
-
     postNewUser: async function (req) {
         const db = await mongoConnect.mongoConnect();                          // connect
         bcrypt.hash(req.body.password, 10, function(err, hash) {
