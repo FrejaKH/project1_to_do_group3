@@ -25,7 +25,7 @@ module.exports = {
                 if (error){
                     console.log(error);
                     db.close();
-                    return true;
+                    return false;
                 }else{
                     db.close();
                     return true;

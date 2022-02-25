@@ -18,7 +18,7 @@ router.get('/signup', function(req, res, next) {
 /* Post signup page for new user */
 router.post('/signup', function(req, res, next) {
   let bool = usercontroller.postNewUser(req, res, next);                         // write user into db
-  if(bool == true){
+  if(bool){
     res.render('login', {
       title: TITLE,
       subtitle: 'Login'
