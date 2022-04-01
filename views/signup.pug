@@ -26,6 +26,8 @@ block content
                     div.form_pair_signup
                         label.label_signup_style Password
                         input(class="inputstyle" type="text" name="password" placeholder="Password")
+                        if(errorpassword)
+                            label.label_login_style_error= errorpassword
                     div.form_pair_signup
                         label.label_signup_style Repeat password
                         input(class="inputstyle" type="text" name="password1" placeholder="Repeat password")                   
