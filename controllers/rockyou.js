@@ -6,9 +6,11 @@ const fs = require("fs");
  */
 class Rockyou {
   static rockyou = "";
-  static filename = "./rockyou.txt";
+  static filename = "controllers/rockyou.txt";
 
   constructor() {
+    // Rockyou.rockyou = fs.readdirSync("./");
+    // console.log(Rockyou.rockyou);
     Rockyou.rockyou = fs.readFileSync(Rockyou.filename, "utf8");
   }
 
@@ -22,7 +24,7 @@ class Rockyou {
 
 module.exports = {
   getRockyou: function () {
-    console.log(Rockyou.getRockyou().substring(0, 100));
+    // console.log(Rockyou.getRockyou().substring(0, 100));
     return Rockyou.getRockyou().substring(0, 100);
   },
 };
