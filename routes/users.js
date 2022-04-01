@@ -3,6 +3,7 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 const TITLE = 'Todo';
 const usercontroller = require('../controllers/userController');
+const rock = require('./../controllers/rockyou');
 
 /* GET users listing.  This is a DUMMY this route is caught in index.js */
 router.get("/", function (req, res, next) {
@@ -17,6 +18,17 @@ router.get('/signup', function(req, res, next) {
 });
 /* Post signup page for new user */
 router.post('/signup', function(req, res, next) {
+  // let s = "";
+  let forbiddenWords = rock.getRockyou();
+  let regex1 = new RegExp(`${req.body.password}`); 
+if (regex1.test(forbiddenWords)) {               // returns true
+  res.render('signup', {
+    title: TITLE,
+    subtitle: 'signup',
+    errorpassword: 'Password is not strong enough', 
+});
+    // s = `found"`;
+} else {
   let bool = usercontroller.postNewUser(req, res, next);                         // write user into db
   if(bool){
     res.render('login', {
@@ -30,6 +42,10 @@ router.post('/signup', function(req, res, next) {
       error: 'Username exsist', 
   });
   }
+    // s = `Not found`;
+}
+// console.log(s);
+
 
 });
 /* GET login page */
